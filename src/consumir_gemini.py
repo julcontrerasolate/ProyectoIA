@@ -2,10 +2,12 @@ import os
 import requests
 from dotenv import load_dotenv
 
+import time
+
 load_dotenv()
 
 # Constantes
-MODELO = "gemini-3.8-flash"
+MODELO = "gemini-3.6-flash"
 URL_BASE = "https://generativelanguage.googleapis.com/v1beta/models/"
 API_KEY = os.getenv("GEMINI_API_KEY") or os.getenv("API_KEY")
 
@@ -68,7 +70,12 @@ def calcular_costo(datos, precio_entrada, precio_salida):
 
 def obtener_datos(pregunta):
     url, body = armar_peticion(pregunta)
+    inicio = time.perf_counter()
     datos = enviar_peticion(url, body)
+    fin = time.perf_counter()
+    latencia = fin - inicio
+    print(f"Latencia de la solicitud: {latencia:.2f} segundos")
+    print(f"Tiempo de ejecución: {fin - inicio:.2f} segundos")
     costo = calcular_costo(datos, precio_entrada=0.00000075, precio_salida=0.00000375)
     print(f"Costo estimado de la solicitud: ${costo:.6f} USD")
     return extraer_texto(datos)
