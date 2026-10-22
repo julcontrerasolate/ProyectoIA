@@ -20,7 +20,9 @@ if not API_KEY:
 
 
 # funcion para crear la solicitud
-def armar_peticion(pregunta, system_instruction=None, response_schema=None, modelo=MODELO):
+def armar_peticion(
+    pregunta, system_instruction=None, response_schema=None, modelo=MODELO
+):
     if not pregunta:
         raise ValueError("La pregunta no puede estar vacía.")
     url = f"{URL_BASE}{modelo}:generateContent?key={API_KEY}"
@@ -88,7 +90,6 @@ def parsear_respuesta_json(texto, claves_requeridas=None):
     claves_requeridas = ["categoria", "nivel"]
     """
     texto_limpio = texto.strip()
-    # Quita fences ```json ... ``` por si el modelo los agrega
     texto_limpio = re.sub(r"^```(?:json)?\s*", "", texto_limpio)
     texto_limpio = re.sub(r"\s*```$", "", texto_limpio)
 
@@ -136,7 +137,7 @@ except (ValueError, RuntimeError) as error:
     print("No se pudo completar la operación: ", error)
 
 
-'''
+"""
 Ejecute 4 veces la MISMA petición con 1 modelo
 y ante cada petición se calcule e imprima: Latencia, Costo, Respuesta
 
@@ -147,4 +148,4 @@ Vuelvo a hacer lo mismo con un modelo distinto
 OBJETIVO: Elijas el mejor modelo para tu proyecto
 
 Prompt sea algo relacionado con tu proyecto.
-'''
+"""
