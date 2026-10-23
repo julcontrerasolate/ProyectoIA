@@ -1,27 +1,132 @@
-# Plantilla gradual de Julio Contreras — Especialización en Desarrollo con IA Generativa (Accenture)
+# ProyectoIA: asistente del clima con Gemini
 
-Esta es la estructura base que vas a usar como punto de partida para tu proyecto en este programa. Es la misma estructura que vas a ir ampliando bloque a bloque, hasta llegar a la aplicación completa que entregas en el Gate 3.
+Miniaplicación en Python que consulta el pronóstico del clima de una ciudad y se lo entrega a un modelo de Gemini, que responde en español, de forma breve y con una recomendación (paraguas, abrigo, etc.).
 
-## Cómo empezar
+Proyecto de Julio Contreras para la Especialización en Desarrollo con IA Generativa (Accenture).
 
-Estos pasos se completan de forma progresiva a lo largo de la Unidad U1.2, no todos el mismo día:
+## Estado del proyecto
 
-1. Descarga este archivo comprimido (adjunto en la plataforma) y descomprímelo en tu computador. Inicializa el control de versiones sobre esa carpeta y registra tu primer commit con esta estructura base, tal como llegó, antes de modificar nada.
-2. Crea tu entorno virtual de Python (por ejemplo, con `venv`) y actívalo.
-3. Instala las dependencias que necesites y regístralas en `requirements.txt` (al inicio puede estar vacío o con muy pocas).
-4. Copia `.env.example` a un archivo nuevo llamado `.env`, y completa ahí tus credenciales reales (llaves de API, tokens). El archivo `.env` nunca se sube al repositorio: ya está excluido en `.gitignore`.
+> **Este proyecto está en desarrollo.** Lo que ves aquí es una versión temporal: se irán agregando más funciones y el contenido de este README cambiará a medida que avance el programa.
 
-## Estructura de carpetas
+**Lo que hay por ahora:**
 
-- `src/` : todo el código fuente de tu proyecto va aquí.
-- `docs/` : documentación técnica del proyecto (diagramas, decisiones de arquitectura, notas).
-- `tests/` : pruebas de tu código (las vas a usar más adelante en el programa, cuando el proyecto lo requiera).
-- `requirements.txt` : dependencias de Python de tu proyecto, para que cualquier otra persona pueda reconstruir tu entorno con un solo comando.
-- `.env.example` : plantilla de las variables de entorno que tu proyecto necesita, sin valores reales. Tu archivo `.env` real (con tus credenciales) nunca se commitea.
-- `.gitignore` : le dice a Git qué archivos y carpetas ignorar (entre ellos, tu entorno virtual y tu archivo `.env`).
+- Consulta del clima de una ciudad (Open-Meteo) y respuesta en lenguaje natural con Gemini.
+- Comparación de modelos de Gemini (éxito, latencia y costo) con datos reales.
+- Decisión de arquitectura documentada: por el momento se usa `gemini-3.6-flash`, pero la decisión no es definitiva.
+- Banco de prompts con registro de consistencia, y pruebas básicas.
 
-## Reglas que se mantienen durante todo el programa
+**Lo que se planea a futuro (ideas, aún no implementadas):**
 
-- Ningún secreto (contraseña, llave de API, token) va escrito directamente en el código ni en ningún archivo que se suba al repositorio.
-- Cada proyecto nuevo tiene su propio entorno virtual: no se comparten dependencias entre proyectos distintos.
-- Todo el trabajo que se entrega en este programa vive en un repositorio de GitHub, sin excepción.
+- Una página web tipo Google Earth, pero con datos del clima.
+- Explorar fenómenos climáticos como El Niño.
+- Reevaluar el modelo a medida que el proyecto crezca (costo, calidad y nuevos modelos disponibles).
+
+## Qué hace
+
+1. Convierte el nombre de una ciudad en coordenadas (API de geocodificación de Open-Meteo, gratis y sin clave).
+2. Obtiene el pronóstico de 7 días y el detalle de hoy por franja horaria (Open-Meteo).
+3. Arma un prompt con la pregunta del usuario y esos datos.
+4. Envía el prompt a la API de Gemini, con las instrucciones de personalidad separadas (`system_instruction`).
+5. Muestra la respuesta, la latencia y el costo estimado de cada petición.
+
+## Requisitos
+
+- Python 3.10 o superior
+- Una clave de API de Gemini (se obtiene en [Google AI Studio](https://aistudio.google.com/))
+- Conexión a internet
+
+## Instalación
+
+Los comandos son para Windows (PowerShell o CMD). En macOS o Linux usa `python3` y `source venv/bin/activate`.
+
+1. Clona el repositorio:
+
+   ```
+   git clone https://github.com/julcontrerasolate/ProyectoIA.git
+   cd ProyectoIA
+   ```
+
+2. Crea y activa el entorno virtual:
+
+   ```
+   py -m venv venv
+   venv\Scripts\activate
+   ```
+
+3. Instala las dependencias:
+
+   ```
+   pip install -r requirements.txt
+   ```
+
+4. Configura tus credenciales. Copia la plantilla y completa tu clave real:
+
+   ```
+   copy .env.example .env
+   ```
+
+   Luego abre `.env` y escribe tu clave:
+
+   ```
+   GEMINI_API_KEY=tu_clave_aqui
+   ```
+
+   El archivo `.env` nunca se sube al repositorio: está excluido en `.gitignore`.
+
+## Cómo ejecutarlo
+
+Desde la raíz del proyecto, con el entorno virtual activado:
+
+```
+py src/prueba_gemini_clima_santiago.py
+```
+
+El script consulta el clima de Santiago, Chile, y prueba varios modelos de Gemini con la misma pregunta, repitiendo cada prueba 4 veces. Al final imprime una tabla comparativa con éxito, latencia y costo promedio por modelo.
+
+### Cambiar la ciudad
+
+Por defecto usa Santiago (CL). Puedes cambiarla agregando estas variables a tu `.env`:
+
+```
+CIUDAD=Valparaíso
+CODIGO_PAIS=CL
+```
+
+### Cambiar la pregunta
+
+La pregunta se escribe en la función `armar_prompt` del script, en la variable `pregunta`.
+
+## Estructura del proyecto
+
+```
+ProyectoIA/
+├── docs/        Diagrama de arquitectura y decisión de modelo
+├── src/         Código fuente (consumo de la API, prompts, pruebas de modelos)
+├── tests/       Pruebas del código
+├── .env.example Plantilla de variables de entorno (sin valores reales)
+├── .gitignore   Archivos excluidos (incluye .env y el entorno virtual)
+└── requirements.txt
+```
+
+### Módulos principales de `src/`
+
+- `armar_peticion`, `enviar_peticion` y `extraer_texto`: funciones separadas que construyen la solicitud, la envían con manejo de errores (timeout, conexión, HTTP, JSON inválido) y extraen el texto de la respuesta.
+- `prompts/`: banco de prompts y registro de la consistencia de cada uno.
+- `excepciones.py`: errores propios del proyecto.
+
+## Documentación
+
+- [Decisión de arquitectura](docs/decision-arquitectura.md): modelo elegido (`gemini-3.6-flash`), tabla comparativa con datos reales, justificación y alternativa descartada.
+- Diagrama de arquitectura: [docs/diagrama.drawio.png](docs/diagrama.drawio.png)
+
+## Seguridad
+
+- Ninguna clave va escrita en el código ni en archivos versionados.
+- `.env` está en `.gitignore`; solo se sube `.env.example`, sin valores reales.
+- La clave se envía en el header `x-goog-api-key`, no en la URL, para que no quede en logs ni mensajes de error.
+
+## Problemas frecuentes
+
+- **"No se encontró la clave API":** revisa que exista el archivo `.env` en la raíz y que tenga `GEMINI_API_KEY=...`.
+- **Timeout en un modelo:** la API de Gemini puede tardar o estar saturada. Vuelve a ejecutar; en las pruebas, algunos modelos fallaron de forma intermitente.
+- **Error HTTP 404 o 400:** verifica que el nombre del modelo en el script exista en la [documentación de Google](https://ai.google.dev/gemini-api/docs/models).
