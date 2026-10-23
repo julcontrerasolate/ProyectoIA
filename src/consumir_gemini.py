@@ -50,6 +50,19 @@ def enviar_peticion(url, body):
         raise RuntimeError(
             "La solicitud ha excedido el tiempo de espera. Intenta de nuevo más tarde."
         )
+    if respuesta.status_code in (400, 401, 403):
+        raise RuntimeError(
+            "Error de autenticación. Verifica tu clave API y los permisos."
+        )
+    if respuesta.status_code >= 500:
+        raise RuntimeError(
+            "Error del servidor. Intenta de nuevo más tarde."
+        )
+
+    if respuesta.status_code == 429:
+        raise RuntimeError(
+            "Límite de solicitudes alcanzado. Intenta de nuevo más tarde."
+        )
 
     if respuesta.status_code != 200:
         raise RuntimeError(
