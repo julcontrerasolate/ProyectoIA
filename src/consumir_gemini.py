@@ -60,8 +60,9 @@ def enviar_peticion(url, body):
         )
 
     if respuesta.status_code == 429:
+        segundos = respuesta.headers.get("Retry-After")
         raise RuntimeError(
-            "Límite de solicitudes alcanzado. Intenta de nuevo más tarde."
+            f"Límite de solicitudes alcanzado. Reintentar en {segundos} segundos." if segundos else "Límite excedido"
         )
 
     if respuesta.status_code != 200:
