@@ -9,7 +9,7 @@ import re
 load_dotenv()
 
 # Constantes
-MODELO = "gemini-3.6-flash"
+MODELO = "gemini-3.5-flash-lite"
 URL_BASE = "https://generativelanguage.googleapis.com/v1beta/models/"
 API_KEY = os.getenv("GEMINI_API_KEY") or os.getenv("API_KEY")
 
@@ -145,10 +145,11 @@ def obtener_datos(pregunta):
     return parsear_respuesta_json(texto, ["categoria", "nivel"])
 
 
-try:
-    print(obtener_datos("Confirma en una frase corta que esta conexión funciona"))
-except (ValueError, RuntimeError) as error:
-    print("No se pudo completar la operación: ", error)
+if __name__ == "__main__":
+    try:
+        print(obtener_datos("Confirma en una frase corta que esta conexión funciona"))
+    except (ValueError, RuntimeError) as error:
+        print("No se pudo completar la operación: ", error)
 
 
 """
