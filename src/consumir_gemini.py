@@ -20,9 +20,7 @@ if not API_KEY:
 
 
 # funcion para crear la solicitud
-def armar_peticion(
-    pregunta, system_instruction=None, response_schema=None, modelo=MODELO
-):
+def armar_peticion(pregunta, system_instruction, response_schema=None, modelo=MODELO):
     if not pregunta:
         raise ValueError("La pregunta no puede estar vacía.")
     url = f"{URL_BASE}{modelo}:generateContent?key={API_KEY}"
@@ -38,42 +36,41 @@ def armar_peticion(
     return url, body
 
 
-# funcion envia la solicitud
+# función envía la petición
 def enviar_peticion(url, body):
     try:
         respuesta = requests.post(url, json=body, timeout=30)
     except requests.exceptions.ConnectionError:
         raise RuntimeError(
-            "No se pudo conectar al servidor. Intenta de nuevo más tarde."
+            "No se pudo conectar con el servicio. Intenta de nuevo en unos momentos."
         )
     except requests.exceptions.Timeout:
-        raise RuntimeError(
-            "La solicitud ha excedido el tiempo de espera. Intenta de nuevo más tarde."
-        )
-    if respuesta.status_code in (400, 401, 403):
-        raise RuntimeError(
-            "Error de autenticación. Verifica tu clave API y los permisos."
-        )
-    if respuesta.status_code >= 500:
-        raise RuntimeError(
-            "Error del servidor. Intenta de nuevo más tarde."
-        )
+        raise RuntimeError("Se agotó el tiempo. Intenta de nuevo en unos momentos.")
 
+    if respuesta.status_code in (401, 403):
+        raise ValueError("Credencial inválida o sin permiso. Revisa tu GEMINI_API_KEY")
+    if respuesta.status_code >= 500:
+        raise TimeoutError(
+            "El proveedor no pudo procesar la petición. Hay que esperar y reintentar"
+        )
     if respuesta.status_code == 429:
         segundos = respuesta.headers.get("Retry-After")
-        raise RuntimeError(
-            f"Límite de solicitudes alcanzado. Reintentar en {segundos} segundos." if segundos else "Límite excedido"
+        mensaje = (
+            f"Límite excedido. Reintentar en {segundos}s."
+            if segundos
+            else "Límite excedido."
         )
+        raise TimeoutError(mensaje)
 
     if respuesta.status_code != 200:
         raise RuntimeError(
-            f"Error en la solicitud: {respuesta.status_code} - {respuesta.text}"
+            f"Error en la petición. Status Code: {respuesta.status_code}"
         )
 
     try:
         return respuesta.json()
-    except (ValueError, requests.exceptions.JSONDecodeError):
-        raise RuntimeError("La respuesta del servidor no es un JSON válido.")
+    except requests.exceptions.JSONDecodeError:
+        raise RuntimeError("La respuesta del servicio no llegó en el formato esperado.")
 
 
 # funcion procesa y extrae datos
