@@ -1,23 +1,186 @@
 [
   {
-    "consulta": "¿Qué es Python?",
-    "respuesta": "Es un lenguaje de programación de alto nivel, interpretado y de propósito general.",
-    "precision": 0.46153846153846156,
-    "cobertura": 0.8571428571428571,
-    "f1": 0.6
+    "consulta": "Hoy la máxima será de 33 °C y no hay nubes. ¿Qué me recomiendas?",
+    "referencia": "Hará mucho calor, conviene usar protector solar y tomar agua.",
+    "respuesta": "Se recomienda prepararse para una temperatura máxima de 33 °C sin nubes.",
+    "precision": 0.0,
+    "cobertura": 0.0,
+    "f1": 0.0
   },
   {
-    "consulta": "¿Cuándo se creó Python?",
-    "respuesta": "Python fue creado y lanzado oficialmente en el año 1991.",
+    "consulta": "El domingo hay 90% de probabilidad de lluvia. ¿Va a llover el domingo?",
+    "referencia": "Sí, el domingo es muy probable que llueva.",
+    "respuesta": "No se puede asegurar, pero hay un 90% de probabilidad de lluvia el domingo.",
+    "precision": 0.14285714285714285,
+    "cobertura": 0.25,
+    "f1": 0.18181818181818182
+  },
+  {
+    "consulta": "El miércoles tendrá 60% de lluvia y 9 °C de mínima. ¿Qué debo llevar?",
+    "referencia": "Lleva paraguas y algo de abrigo porque habrá lluvia y frío.",
+    "respuesta": "Debes llevar ropa para una mínima de 9 °C y protección contra el 60% de lluvia.",
+    "precision": 0.1875,
+    "cobertura": 0.2727272727272727,
+    "f1": 0.2222222222222222
+  },
+  {
+    "consulta": "Los datos solo muestran temperatura y probabilidad de lluvia. ¿Cuántos milímetros caerán mañana?",
+    "referencia": "No lo sé, los datos no indican cuántos milímetros caerán.",
+    "respuesta": "No es posible saberlo porque los datos solo muestran temperatura y probabilidad de lluvia.",
+    "precision": 0.21428571428571427,
+    "cobertura": 0.3,
+    "f1": 0.25
+  },
+  {
+    "consulta": "Mañana la mínima será de 4 °C y la máxima de 15 °C. ¿Debo llevar abrigo?",
+    "referencia": "Sí, mañana hará frío y conviene llevar abrigo.",
+    "respuesta": "Sí, lleva abrigo porque mañana la temperatura mínima será de 4 °C y la máxima de 15 °C.",
+    "precision": 0.2222222222222222,
+    "cobertura": 0.5,
+    "f1": 0.30769230769230765
+  },
+  {
+    "consulta": "De lunes a miércoles la lluvia será de 10%, 15% y 5%. ¿Va a llover a comienzos de semana?",
+    "referencia": "No, de lunes a miércoles la probabilidad de lluvia es baja.",
+    "respuesta": "Sí, lloverá a comienzos de semana con probabilidades de 10%, 15% y 5% de lunes a miércoles.",
+    "precision": 0.29411764705882354,
+    "cobertura": 0.45454545454545453,
+    "f1": 0.35714285714285715
+  },
+  {
+    "consulta": "La humedad hoy es de 95% y hay niebla. ¿Cómo estará la visibilidad?",
+    "referencia": "La visibilidad será baja por la niebla.",
+    "respuesta": "La visibilidad estará reducida debido a la presencia de niebla con un 95% de humedad.",
+    "precision": 0.26666666666666666,
+    "cobertura": 0.5714285714285714,
+    "f1": 0.36363636363636365
+  },
+  {
+    "consulta": "Hoy hay 0% de lluvia y 30 °C en la tarde. ¿Necesito paraguas?",
+    "referencia": "No, no necesitas paraguas porque no se espera lluvia.",
+    "respuesta": "No necesitas paraguas porque hoy hay cero por ciento de lluvia y treinta grados Celsius en la tarde.",
+    "precision": 0.2777777777777778,
+    "cobertura": 0.5555555555555556,
+    "f1": 0.3703703703703704
+  },
+  {
+    "consulta": "Esta noche la mínima será de -2 °C. ¿Puede haber helada?",
+    "referencia": "Sí, con una mínima de menos 2 grados puede haber helada.",
+    "respuesta": "Sí, habrá helada porque la temperatura mínima prevista para esta noche es de -2 °C.",
+    "precision": 0.3333333333333333,
+    "cobertura": 0.45454545454545453,
+    "f1": 0.3846153846153846
+  },
+  {
+    "consulta": "El viernes tendrá una mínima de 10 °C, una máxima de 24 °C y 0% de lluvia. ¿Cómo estará el viernes?",
+    "referencia": "El viernes estará despejado, con entre 10 y 24 grados y sin lluvia.",
+    "respuesta": "El viernes tendrá una mínima de 10 °C, una máxima de 24 °C y 0% de lluvia.",
+    "precision": 0.35294117647058826,
+    "cobertura": 0.46153846153846156,
+    "f1": 0.4000000000000001
+  },
+  {
+    "consulta": "Tengo datos del clima de Santiago. ¿Cómo estará el clima en Valparaíso?",
+    "referencia": "No tengo datos de Valparaíso, solo de Santiago.",
+    "respuesta": "No tengo datos disponibles sobre el clima en Valparaíso.",
+    "precision": 0.4444444444444444,
+    "cobertura": 0.5,
+    "f1": 0.47058823529411764
+  },
+  {
+    "consulta": "Hoy en la tarde habrá 35 °C y 5% de lluvia. ¿Necesito paraguas?",
+    "referencia": "No, no necesitas paraguas porque casi no hay probabilidad de lluvia.",
+    "respuesta": "No, porque la probabilidad de lluvia es de solo 5%.",
     "precision": 0.5,
-    "cobertura": 1.0,
-    "f1": 0.6666666666666666
+    "cobertura": 0.45454545454545453,
+    "f1": 0.47619047619047616
   },
   {
-    "consulta": "¿Qué es una lista en Python?",
-    "respuesta": "Una lista en Python es una colección ordenada y modificable de elementos.",
-    "precision": 0.6666666666666666,
-    "cobertura": 1.0,
-    "f1": 0.8
+    "consulta": "Mañana habrá viento de 60 km/h. ¿Es un día tranquilo para salir?",
+    "referencia": "No, el viento de 60 km/h es fuerte y conviene tener precaución.",
+    "respuesta": "No, porque mañana habrá un viento de 60 km/h.",
+    "precision": 0.5555555555555556,
+    "cobertura": 0.4166666666666667,
+    "f1": 0.4761904761904762
+  },
+  {
+    "consulta": "El sábado hay 0% de probabilidad de lluvia. ¿Necesito paraguas el sábado?",
+    "referencia": "No, el sábado no se espera lluvia y no necesitas paraguas.",
+    "respuesta": "No necesitas paraguas el sábado porque hay cero por ciento de probabilidad de lluvia.",
+    "precision": 0.42857142857142855,
+    "cobertura": 0.5454545454545454,
+    "f1": 0.4799999999999999
+  },
+  {
+    "consulta": "Mañana habrá 3 °C de mínima y 85% de lluvia. ¿Qué debo llevar?",
+    "referencia": "Lleva abrigo y paraguas porque habrá frío y mucha probabilidad de lluvia.",
+    "respuesta": "Debes llevar paraguas y abrigo debido a la lluvia y el frío.",
+    "precision": 0.5,
+    "cobertura": 0.5,
+    "f1": 0.5
+  },
+  {
+    "consulta": "El jueves la máxima será de 25 °C y el viernes de 28 °C. ¿Qué día hará más calor?",
+    "referencia": "El viernes hará más calor, con una máxima de 28 grados.",
+    "respuesta": "El viernes hará más calor porque su máxima será de 28 °C frente a los 25 °C del jueves.",
+    "precision": 0.42105263157894735,
+    "cobertura": 0.7272727272727273,
+    "f1": 0.5333333333333333
+  },
+  {
+    "consulta": "El lunes tendrá 40% de probabilidad de lluvia. ¿Es seguro que llueva?",
+    "referencia": "No, el lunes es posible que llueva pero no es seguro.",
+    "respuesta": "No es seguro que llueva, ya que solo hay un 40% de probabilidad el lunes.",
+    "precision": 0.4666666666666667,
+    "cobertura": 0.6363636363636364,
+    "f1": 0.5384615384615385
+  },
+  {
+    "consulta": "Hoy la máxima es de 18 °C y mañana será de 12 °C. ¿Mañana estará más frío?",
+    "referencia": "Sí, mañana estará más frío que hoy, con una máxima de 12 grados.",
+    "respuesta": "Sí, mañana estará más frío porque la máxima será de 12 °C frente a los 18 °C de hoy.",
+    "precision": 0.47368421052631576,
+    "cobertura": 0.6923076923076923,
+    "f1": 0.5625
+  },
+  {
+    "consulta": "Hoy hay 70% de lluvia en la tarde y 10% en la noche. ¿Cuándo conviene salir?",
+    "referencia": "Conviene salir en la noche, cuando casi no hay probabilidad de lluvia.",
+    "respuesta": "Conviene salir en la noche porque hay 10% de lluvia frente al 70% de la tarde.",
+    "precision": 0.5,
+    "cobertura": 0.6666666666666666,
+    "f1": 0.5714285714285715
+  },
+  {
+    "consulta": "El jueves tendrá 15% de lluvia y 26 °C de máxima. ¿Cómo estará el jueves?",
+    "referencia": "El jueves estará agradable, con máxima de 26 grados y poca probabilidad de lluvia.",
+    "respuesta": "El jueves tendrá una máxima de 26 °C y un 15% de lluvia.",
+    "precision": 0.6153846153846154,
+    "cobertura": 0.5714285714285714,
+    "f1": 0.5925925925925927
+  },
+  {
+    "consulta": "Hoy en la mañana habrá 8 °C y en la tarde 21 °C. ¿Cuándo hará más frío?",
+    "referencia": "En la mañana hará más frío, con 8 grados.",
+    "respuesta": "Hará más frío en la mañana con 8 °C que en la tarde con 21 °C.",
+    "precision": 0.5,
+    "cobertura": 0.8888888888888888,
+    "f1": 0.64
+  },
+  {
+    "consulta": "El martes hay 80% de lluvia y el miércoles 20%. ¿Qué día es mejor para salir?",
+    "referencia": "El miércoles es mejor para salir porque tiene menos probabilidad de lluvia.",
+    "respuesta": "El miércoles es mejor para salir porque tiene solo 20% de lluvia frente al 80% del martes.",
+    "precision": 0.5882352941176471,
+    "cobertura": 0.8333333333333334,
+    "f1": 0.6896551724137931
+  },
+  {
+    "consulta": "El pronóstico dice sol y 22 °C el sábado. ¿Es buen día para un picnic?",
+    "referencia": "Sí, el sábado es buen día para un picnic por el sol y los 22 grados.",
+    "respuesta": "Sí, es buen día para un picnic porque el sábado habrá sol y 22 °C.",
+    "precision": 0.8,
+    "cobertura": 0.75,
+    "f1": 0.7741935483870969
   }
 ]

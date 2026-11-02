@@ -20,10 +20,10 @@ if not API_KEY:
 
 
 # funcion para crear la solicitud
-def armar_peticion(pregunta, system_instruction, response_schema=None, modelo=MODELO):
+def armar_peticion(MODELO, pregunta, system_instruction, response_schema=None):
     if not pregunta:
         raise ValueError("La pregunta no puede estar vacía.")
-    url = f"{URL_BASE}{modelo}:generateContent?key={API_KEY}"
+    url = f"{URL_BASE}{MODELO}:generateContent?key={API_KEY}"
     body = {"contents": [{"parts": [{"text": pregunta}]}]}
     if system_instruction:
         body["systemInstruction"] = {"parts": [{"text": system_instruction}]}
@@ -129,7 +129,7 @@ def obtener_datos(pregunta):
         "required": ["categoria", "nivel"],
     }
     system_instruction = "Eres un asistente amigable y respondes en máximo 2 palabras."
-    url, body = armar_peticion(pregunta, system_instruction, response_schema)
+    url, body = armar_peticion(MODELO,pregunta, system_instruction, response_schema)
     inicio = time.perf_counter()
     datos = enviar_peticion(url, body)
     fin = time.perf_counter()

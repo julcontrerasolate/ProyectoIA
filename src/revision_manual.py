@@ -1,0 +1,96 @@
+import json
+
+revision_manual = [
+    {
+        "consulta": "Hoy la máxima será de 33 °C y no hay nubes. ¿Qué me recomiendas?",
+        "f1": 0.00,
+        "correccion_factual": "si",
+        "completitud": "no",
+        "contradiccion": "no",
+        "nota": "Los datos son correctos, pero solo repite la temperatura. No da ninguna recomendación concreta (protector solar, agua).",
+    },
+    {
+        "consulta": "El domingo hay 90% de probabilidad de lluvia. ¿Va a llover el domingo?",
+        "f1": 0.18,
+        "correccion_factual": "si",
+        "completitud": "si",
+        "contradiccion": "no",
+        "nota": "Dice 'no se puede asegurar' pero da el 90% correcto. Suena más dudosa que la referencia ('muy probable'), pero no afirma lo contrario.",
+    },
+    {
+        "consulta": "El miércoles tendrá 60% de lluvia y 9 °C de mínima. ¿Qué debo llevar?",
+        "f1": 0.22,
+        "correccion_factual": "si",
+        "completitud": "si",
+        "contradiccion": "no",
+        "nota": "Correcta con otras palabras: 'ropa' y 'protección' en vez de 'abrigo' y 'paraguas'. Puntaje bajo por paráfrasis.",
+    },
+    {
+        "consulta": "Los datos solo muestran temperatura y probabilidad de lluvia. ¿Cuántos milímetros caerán mañana?",
+        "f1": 0.25,
+        "correccion_factual": "si",
+        "completitud": "si",
+        "contradiccion": "no",
+        "nota": "Reconoce que los datos no alcanzan, igual que la referencia, pero con otras palabras.",
+    },
+    {
+        "consulta": "Mañana la mínima será de 4 °C y la máxima de 15 °C. ¿Debo llevar abrigo?",
+        "f1": 0.31,
+        "correccion_factual": "si",
+        "completitud": "si",
+        "contradiccion": "no",
+        "nota": "Dice 'Sí, lleva abrigo' como la referencia. Puntúa bajo porque repite las temperaturas, que la referencia no incluye.",
+    },
+    {
+        "consulta": "Hoy hay 70% de lluvia en la tarde y 10% en la noche. ¿Cuándo conviene salir?",
+        "f1": 0.57,
+        "correccion_factual": "si",
+        "completitud": "si",
+        "contradiccion": "no",
+        "nota": "Elige la noche, igual que la referencia, y justifica con los porcentajes correctos.",
+    },
+    {
+        "consulta": "El jueves tendrá 15% de lluvia y 26 °C de máxima. ¿Cómo estará el jueves?",
+        "f1": 0.59,
+        "correccion_factual": "si",
+        "completitud": "si",
+        "contradiccion": "no",
+        "nota": "Da los dos datos correctos. No dice 'agradable' como la referencia, pero la información clave está.",
+    },
+    {
+        "consulta": "Hoy en la mañana habrá 8 °C y en la tarde 21 °C. ¿Cuándo hará más frío?",
+        "f1": 0.64,
+        "correccion_factual": "si",
+        "completitud": "si",
+        "contradiccion": "no",
+        "nota": "Responde la mañana con 8 °C y agrega la comparación con la tarde.",
+    },
+    {
+        "consulta": "El martes hay 80% de lluvia y el miércoles 20%. ¿Qué día es mejor para salir?",
+        "f1": 0.69,
+        "correccion_factual": "si",
+        "completitud": "si",
+        "contradiccion": "no",
+        "nota": "Elige el miércoles y da los porcentajes correctos de los dos días.",
+    },
+    {
+        "consulta": "El pronóstico dice sol y 22 °C el sábado. ¿Es buen día para un picnic?",
+        "f1": 0.77,
+        "correccion_factual": "si",
+        "completitud": "si",
+        "contradiccion": "no",
+        "nota": "Casi igual a la referencia en contenido y en palabras.",
+    },
+    # Caso extra, fuera de la muestra de extremos
+    {
+        "consulta": "De lunes a miércoles la lluvia será de 10%, 15% y 5%. ¿Va a llover a comienzos de semana?",
+        "f1": 0.36,
+        "correccion_factual": "no",
+        "completitud": "si",
+        "contradiccion": "si",
+        "nota": "EXTRA. Dice 'Sí, lloverá' con probabilidades de 5% a 15%. La referencia dice que no. Repitió el error en las 3 corridas. Su F1 quedó por encima de 4 respuestas correctas.",
+    },
+]
+
+with open("revision_manual.json", "w", encoding="utf-8") as archivo:
+    json.dump(revision_manual, archivo, indent=2, ensure_ascii=False)

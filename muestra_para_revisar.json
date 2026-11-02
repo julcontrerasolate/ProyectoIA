@@ -1,0 +1,82 @@
+[
+  {
+    "consulta": "Hoy la máxima será de 33 °C y no hay nubes. ¿Qué me recomiendas?",
+    "referencia": "Hará mucho calor, conviene usar protector solar y tomar agua.",
+    "respuesta": "Se recomienda prepararse para una temperatura máxima de 33 °C sin nubes.",
+    "precision": 0.0,
+    "cobertura": 0.0,
+    "f1": 0.0
+  },
+  {
+    "consulta": "El domingo hay 90% de probabilidad de lluvia. ¿Va a llover el domingo?",
+    "referencia": "Sí, el domingo es muy probable que llueva.",
+    "respuesta": "No se puede asegurar, pero hay un 90% de probabilidad de lluvia el domingo.",
+    "precision": 0.14285714285714285,
+    "cobertura": 0.25,
+    "f1": 0.18181818181818182
+  },
+  {
+    "consulta": "El miércoles tendrá 60% de lluvia y 9 °C de mínima. ¿Qué debo llevar?",
+    "referencia": "Lleva paraguas y algo de abrigo porque habrá lluvia y frío.",
+    "respuesta": "Debes llevar ropa para una mínima de 9 °C y protección contra el 60% de lluvia.",
+    "precision": 0.1875,
+    "cobertura": 0.2727272727272727,
+    "f1": 0.2222222222222222
+  },
+  {
+    "consulta": "Los datos solo muestran temperatura y probabilidad de lluvia. ¿Cuántos milímetros caerán mañana?",
+    "referencia": "No lo sé, los datos no indican cuántos milímetros caerán.",
+    "respuesta": "No es posible saberlo porque los datos solo muestran temperatura y probabilidad de lluvia.",
+    "precision": 0.21428571428571427,
+    "cobertura": 0.3,
+    "f1": 0.25
+  },
+  {
+    "consulta": "Mañana la mínima será de 4 °C y la máxima de 15 °C. ¿Debo llevar abrigo?",
+    "referencia": "Sí, mañana hará frío y conviene llevar abrigo.",
+    "respuesta": "Sí, lleva abrigo porque mañana la temperatura mínima será de 4 °C y la máxima de 15 °C.",
+    "precision": 0.2222222222222222,
+    "cobertura": 0.5,
+    "f1": 0.30769230769230765
+  },
+  {
+    "consulta": "Hoy hay 70% de lluvia en la tarde y 10% en la noche. ¿Cuándo conviene salir?",
+    "referencia": "Conviene salir en la noche, cuando casi no hay probabilidad de lluvia.",
+    "respuesta": "Conviene salir en la noche porque hay 10% de lluvia frente al 70% de la tarde.",
+    "precision": 0.5,
+    "cobertura": 0.6666666666666666,
+    "f1": 0.5714285714285715
+  },
+  {
+    "consulta": "El jueves tendrá 15% de lluvia y 26 °C de máxima. ¿Cómo estará el jueves?",
+    "referencia": "El jueves estará agradable, con máxima de 26 grados y poca probabilidad de lluvia.",
+    "respuesta": "El jueves tendrá una máxima de 26 °C y un 15% de lluvia.",
+    "precision": 0.6153846153846154,
+    "cobertura": 0.5714285714285714,
+    "f1": 0.5925925925925927
+  },
+  {
+    "consulta": "Hoy en la mañana habrá 8 °C y en la tarde 21 °C. ¿Cuándo hará más frío?",
+    "referencia": "En la mañana hará más frío, con 8 grados.",
+    "respuesta": "Hará más frío en la mañana con 8 °C que en la tarde con 21 °C.",
+    "precision": 0.5,
+    "cobertura": 0.8888888888888888,
+    "f1": 0.64
+  },
+  {
+    "consulta": "El martes hay 80% de lluvia y el miércoles 20%. ¿Qué día es mejor para salir?",
+    "referencia": "El miércoles es mejor para salir porque tiene menos probabilidad de lluvia.",
+    "respuesta": "El miércoles es mejor para salir porque tiene solo 20% de lluvia frente al 80% del martes.",
+    "precision": 0.5882352941176471,
+    "cobertura": 0.8333333333333334,
+    "f1": 0.6896551724137931
+  },
+  {
+    "consulta": "El pronóstico dice sol y 22 °C el sábado. ¿Es buen día para un picnic?",
+    "referencia": "Sí, el sábado es buen día para un picnic por el sol y los 22 grados.",
+    "respuesta": "Sí, es buen día para un picnic porque el sábado habrá sol y 22 °C.",
+    "precision": 0.8,
+    "cobertura": 0.75,
+    "f1": 0.7741935483870969
+  }
+]

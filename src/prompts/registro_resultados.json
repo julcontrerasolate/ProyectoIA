@@ -1,14 +1,14 @@
 {
   "Cual es el clima hoy en Santiago": {
     "exitos": 1,
-    "intentos": 2
+    "intentos": 3
   },
   "Necesito paraguas hoy": {
     "exitos": 1,
-    "intentos": 2
+    "intentos": 3
   },
   "Que actividad hacer segun el clima": {
     "exitos": 1,
-    "intentos": 2
+    "intentos": 3
   }
 }
